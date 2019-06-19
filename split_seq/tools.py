@@ -323,13 +323,16 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
         bc_df = pd.DataFrame()
         bc_df['bc1'] = seqs.str.slice(bc_starts[0],bc_starts[0]+8)
         bc_df['bc2'] = seqs.str.slice(bc_starts[1],bc_starts[1]+8)
-        bc_df['bc3'] = seqs.str.slice(bc_starts[2],bc_starts[2]+8)
+        #bc_df['bc3'] = seqs.str.slice(bc_starts[2],bc_starts[2]+8)         #edited 6/19/19
+        bc_df['bc3'] = seqs.str.slice(bc_starts[1],bc_starts[1]+8)          #bc3 duped from bc2        
+        
         bc_df['bc1_valid'] = bc_df['bc1'].apply(lambda s: s in bc_8nt_v1)
         bc_df['bc2_valid'] = bc_df['bc2'].apply(lambda s: s in bc_8nt_v1)
         if chemistry=='v1':
             bc_df['bc3_valid'] = bc_df['bc3'].apply(lambda s: s in bc_8nt_v1)
         elif chemistry=='v2':
-            bc_df['bc3_valid'] = bc_df['bc3'].apply(lambda s: s in bc_8nt_v2)
+            #bc_df['bc3_valid'] = bc_df['bc3'].apply(lambda s: s in bc_8nt_v2)  #edited 6/19/19
+            bc_df['bc3_valid'] = bc_df['b2'].apply(lambda s: s in bc_8nt_v1)    #bc3 duped from bc2
 
         counts = bc_df.query('bc1_valid & bc2_valid & bc3_valid')\
                       .groupby(['bc1','bc2','bc3']).size().sort_values(ascending=False)
@@ -388,7 +391,9 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
             seq2 = f2.readline().decode("utf-8")
             bc1 = seq2[bc_starts[0]:bc_starts[0]+bc_len]
             bc2 = seq2[bc_starts[1]:bc_starts[1]+bc_len]
-            bc3 = seq2[bc_starts[2]:bc_starts[2]+bc_len]
+            #bc3 = seq2[bc_starts[2]:bc_starts[2]+bc_len]       #edited 6/19/19
+            bc3 = seq2[bc_starts[1]:bc_starts[1]+bc_len]        #duped bc3 from bc2
+            
             umi = seq2[:10]
             strand2 = f2.readline()
             qual2 = f2.readline().decode("utf-8")
@@ -417,7 +422,9 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
             if fastq_reads<1000000:
                 bc1_Q30_sum += np.mean([ord(c)>62 for c in qual2[bc_starts[0]:bc_starts[0]+bc_len]])
                 bc2_Q30_sum += np.mean([ord(c)>62 for c in qual2[bc_starts[1]:bc_starts[1]+bc_len]])
-                bc3_Q30_sum += np.mean([ord(c)>62 for c in qual2[bc_starts[2]:bc_starts[2]+bc_len]])
+                #bc3_Q30_sum += np.mean([ord(c)>62 for c in qual2[bc_starts[2]:bc_starts[2]+bc_len]])   #edited 6/19/19
+                bc3_Q30_sum += np.mean([ord(c)>62 for c in qual2[bc_starts[1]:bc_starts[1]+bc_len]])    #duped bc3 from bc2
+                
                 umi_Q30_sum += np.mean([ord(c)>62 for c in qual2[:10]])
                 cDNA_Q30_sum += np.mean([ord(c)>62 for c in qual1[:-1]])
     with open(output_dir + '/sequencing_stats.txt', 'w') as f:
