@@ -394,7 +394,8 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
             bc1 = seq2[bc_starts[0]:bc_starts[0]+bc_len]
             bc2 = seq2[bc_starts[1]:bc_starts[1]+bc_len]
             #bc3 = seq2[bc_starts[2]:bc_starts[2]+bc_len]       #edited 6/19/19
-            bc3 = seq2[bc_starts[1]:bc_starts[1]+bc_len]        #duped bc3 from bc2
+            #bc3 = seq2[bc_starts[1]:bc_starts[1]+bc_len]        #duped bc3 from bc2
+            bc3 = 'ACTCGTAA'                                        #alternatively, feeds a static barcode
             
             umi = seq2[:10]
             strand2 = f2.readline()
@@ -408,10 +409,12 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
             qual1 = f1.readline().decode("utf-8")
             
             if len(cellbc_umi)==35:
-                TSO_location = seq1.find('AAGCAGTGGTATCAACGCAGAGTGAATGGG')
-                if 0<=TSO_location<20:
-                    seq1 = seq1[TSO_location+30:]
-                    qual1 = qual1[TSO_location+30:]
+                """
+                TSO_location = seq1.find('AAGCAGTGGTATCAACGCAGAGTGAATGGG')          #edited 6/24/2019
+                if 0<=TSO_location<20:                                              #removed for genomic DNA (without template switch)
+                    seq1 = seq1[TSO_location+30:]                                   #This line trims the TSO from Read1... doesn't need to be removed?
+                    qual1 = qual1[TSO_location+30:]                                 #Removing just in case .find function messes up in absence of target
+                """
                 header1 = '@' + bc1 + bc2 + bc3 +'_' + umi + '_' + qual2[:10] + '_' + header1[1:]
                 fout.write(header1)
                 fout.write(seq1)
