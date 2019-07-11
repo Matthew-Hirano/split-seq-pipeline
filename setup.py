@@ -24,20 +24,20 @@ class CustomInstall(install):
 
 
 setup(
-    name='split_seq',
+    name='split_seq_duplex',            #7/11/19, added duplex name 
     version='0.0.1',
     description='split seq tools',
     # basic stuff here
     scripts = [
             'split-seq'
     ],
-    packages = ['split_seq'],
+    packages = ['split_seq_duplex'],        #7/11/19, added duplex name
     install_requires=[
         'numpy',
         'pysam',
     ],
     zip_safe=False,
-    package_data={'split_seq': ['barcodes/*.csv']},
+    package_data={'split_seq_duplex': ['barcodes/*.csv']},          #7/11/19, added duplex name
     include_package_data=True,
     # TODO: commenting this out; the user can run install_dependencies on their own.
     #cmdclass={'install': CustomInstall},
