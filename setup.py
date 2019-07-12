@@ -31,13 +31,13 @@ setup(
     scripts = [
             'split-seq'
     ],
-    packages = ['split_seq_duplex'],        #7/11/19, added duplex name
+    packages = ['split_seq'],        
     install_requires=[
         'numpy',
         'pysam',
     ],
     zip_safe=False,
-    package_data={'split_seq_duplex': ['barcodes/*.csv']},          #7/11/19, added duplex name
+    package_data={'split_seq': ['barcodes/*.csv']},        
     include_package_data=True,
     # TODO: commenting this out; the user can run install_dependencies on their own.
     #cmdclass={'install': CustomInstall},
