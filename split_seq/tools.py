@@ -285,6 +285,8 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
         bc3_edit_dict = edit_dict_v1
         # Amplicon sequence
         amp_seq = 'NNNNNNNNNNIIIIIIIIGTGGCCGATGTTTCGCATCGGCGTACGACTIIIIIIIIATCCACGTGCTTGAGAGGCCAGAGCATTCGIIIIIIII'
+    
+    """
     elif chemistry=='v2':
         bc1_edit_dict = edit_dict_v1
         bc2_edit_dict = edit_dict_v1
@@ -292,7 +294,8 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
 
         # Amplicon sequence
         amp_seq = 'NNNNNNNNNNIIIIIIIIGTGGCCGATGTTTCGCATCGGCGTACGACTIIIIIIIIATCCACGTGCTTGAGACTGTGGIIIIIIII'
-
+    """
+    
     elif chemistry=='v3':
         bc1_edit_dict = edit_dict_v1
         bc2_edit_dict = edit_dict_v1
