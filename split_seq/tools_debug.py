@@ -295,6 +295,15 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', **params):
         bc_8nt_RT = bc_8nt
         # Amplicon sequence
         amp_seq = 'NNNNNNNNNNIIIIIIIIGTGGCCGATGTTTCGCATCGGCGTACGACTIIIIIIIIATCCACGTGCTTGAGAGGCCAGAGCATTCGIIIIIIII'
+        
+    elif chemistry=='v3': #edited 7/15/19 for the duplex adapter test 
+        #bc1_edit_dict = edit_dict_v1
+        #bc2_edit_dict = edit_dict_v1
+        #bc3_edit_dict = edit_dict_v2
+        bc_8nt_RT = pd.read_csv(PATH + '/barcodes/bc_8nt_v2.csv',names=['barcode'],index_col=0).barcode
+        # Amplicon sequence         
+        amp_seq = 'NNNNNNNNNNIIIIIIIIGTGGCCGATGTTTCGCATCGGCGTACGACTIIIIIIIIATCCACGTGCTTGAGAGGCCAGAGCATTCGIIIIIIII'    
+            
     else:
         bc_8nt_RT = pd.read_csv(PATH + '/barcodes/bc_8nt_v2.csv',names=['barcode'],index_col=0).barcode
         # Amplicon sequence
