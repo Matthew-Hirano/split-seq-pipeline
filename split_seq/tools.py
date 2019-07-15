@@ -402,9 +402,9 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
             seq2 = f2.readline().decode("utf-8")
             bc1 = seq2[bc_starts[0]:bc_starts[0]+bc_len]
             bc2 = seq2[bc_starts[1]:bc_starts[1]+bc_len]
-            #bc3 = seq2[bc_starts[2]:bc_starts[2]+bc_len]       #edited 6/19/19
+            bc3 = seq2[bc_starts[2]:bc_starts[2]+bc_len]       #edited 6/19/19
             #bc3 = seq2[bc_starts[1]:bc_starts[1]+bc_len]        #duped bc3 from bc2
-            bc3 = 'ACTCGTAA'                                        #alternatively, feeds a static barcode
+            #bc3 = 'ACTCGTAA'                                        #alternatively, feeds a static barcode
             
             umi = seq2[:10]
             strand2 = f2.readline()
