@@ -297,7 +297,7 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', **params):
         amp_seq = 'NNNNNNNNNNIIIIIIIIGTGGCCGATGTTTCGCATCGGCGTACGACTIIIIIIIIATCCACGTGCTTGAGAGGCCAGAGCATTCGIIIIIIII'
         
     elif chemistry=='v3': #edited 7/15/19 for the duplex adapter test 
-        #bc1_edit_dict = edit_dict_v1
+        #bc1_edit_dict = edit_dict_v1 w
         #bc2_edit_dict = edit_dict_v1
         #bc3_edit_dict = edit_dict_v2
         bc_8nt_RT = pd.read_csv(PATH + '/barcodes/bc_8nt_v2.csv',names=['barcode'],index_col=0).barcode
