@@ -294,7 +294,7 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
         # Amplicon sequence
         amp_seq = 'NNNNNNNNNNIIIIIIIIGTGGCCGATGTTTCGCATCGGCGTACGACTIIIIIIIIATCCACGTGCTTGAGACTGTGGIIIIIIII'
     
-    elif chemistry=='v3':
+    elif chemistry=='v4':
         bc1_edit_dict = edit_dict_v1
         bc2_edit_dict = edit_dict_v1
         bc3_edit_dict = edit_dict_v1      #edited 7/15/19 from v2 -> v1
@@ -340,7 +340,7 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
         bc_df['bc2_valid'] = bc_df['bc2'].apply(lambda s: s in bc_8nt_v1)
         if chemistry=='v1':
             bc_df['bc3_valid'] = bc_df['bc3'].apply(lambda s: s in bc_8nt_v1)
-        elif chemistry=='v2' or chemistry=='v3':
+        elif chemistry=='v2' or chemistry=='v4':
             bc_df['bc3_valid'] = bc_df['bc3'].apply(lambda s: s in bc_8nt_v1)  #edited 7/15/19 from v2 -> v1
             #bc_df['bc3_valid'] = bc_df['b2'].apply(lambda s: s in bc_8nt_v1)    #bc3 duped from bc2
             #bc_df['bc3_valid'] = True                                               #alternatively, feeds a static barcode
