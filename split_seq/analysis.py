@@ -128,11 +128,12 @@ def get_read_threshold(read_counts):
     y_hat = pd.Series(index=x_hat,data=y_hat)
     y_hat_prime = (-y_hat).diff(window).iloc[window:].values
     threshold = 10**y_hat.iloc[np.argmax(y_hat_prime)]*0.5
-    return threshold
+    #return threshold
+    return 36                                       #7/31/2019 temporary change to defined read cutoff (10 -> 36)
 
 def plot_read_thresh(read_counts,fig=None,ax=None):
     window = 4
-    read_threshold = get_read_threshold(read_counts[read_counts>2])
+    read_threshold = get_read_threshold(read_counts[read_counts>2])         
     threshold = len(read_counts[read_counts>read_threshold])
     median_umis = read_counts.sort_values(ascending=False)[:threshold].median()
     if ax is None:
