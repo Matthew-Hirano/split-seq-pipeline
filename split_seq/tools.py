@@ -401,10 +401,10 @@ def preprocess_fastq(fastq1, fastq2, output_dir, chemistry='v1', bc_edit_dist=3,
             qual1 = f1.readline().decode("utf-8")
             
             if len(cellbc_umi)==35:
-                TSO_location = seq1.find('AAGCAGTGGTATCAACGCAGAGTGAATGGG')
-                if 0<=TSO_location<20:
-                    seq1 = seq1[TSO_location+30:]
-                    qual1 = qual1[TSO_location+30:]
+                TSO_location = seq1.find('AACGCAGAGTGAATGGG')
+                if 0<=TSO_location<15:
+                    seq1 = seq1[TSO_location+17:]
+                    qual1 = qual1[TSO_location+17:]
                 header1 = '@' + bc1 + bc2 + bc3 +'_' + umi + '_' + qual2[:10] + '_' + header1[1:]
                 fout.write(header1)
                 fout.write(seq1)
