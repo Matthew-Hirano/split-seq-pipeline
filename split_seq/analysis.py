@@ -447,8 +447,8 @@ def generate_single_dge_report(output_dir,genome_dir,chemistry,sample_name='',su
                     if search_kmers(seq,mt_rrna_antisense_kmer_dict):
                         well_counts['mt_rRNA_antisense_counts'][well] += 1
         read_len = max(read_lengths.keys())
-        #read_len_trimmed = read_len - 30
-        tso_fraction = 1-read_lengths[read_len]/sum(read_lengths.values())
+        read_len_trimmed = read_len - 30
+        tso_fraction = read_lengths[read_len_trimmed]/sum(read_lengths.values())
         cols = ['rRNA_sense_counts','rRNA_antisense_counts','total_counts']
         well_rrna_counts = pd.DataFrame(well_counts)[cols].reindex(sub_wells+list(np.array(sub_wells)+48)).fillna(0)
         well_rrna_counts_dt = pd.DataFrame(well_rrna_counts).reindex(sub_wells)
