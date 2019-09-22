@@ -24,7 +24,7 @@ rc_dict = dict(zip(list('NACGT'),list('NTGCA')))
 def reverse_complement(seq):
     return ''.join([rc_dict[s] for s in seq][::-1])
 
-def generate_dge_matrix(df,read_cutoff=10):                 #7/31/2019 changed from 10 -> 30
+def generate_dge_matrix(df,read_cutoff=15):                 #7/31/2019 changed from 10 -> 30
     reads_per_cell = df.groupby(df.cell_barcode).size()
     cells = reads_per_cell[reads_per_cell>3]
     all_genes = pd.Series(df.gene.unique()).sort_values()
@@ -129,7 +129,7 @@ def get_read_threshold(read_counts):
     y_hat_prime = (-y_hat).diff(window).iloc[window:].values
     threshold = 10**y_hat.iloc[np.argmax(y_hat_prime)]*0.5
     #return threshold
-    return 10                                       #7/31/2019 temporary change to defined read cutoff (10 -> 30), reverted 9/03/2019
+    return 15                                       #7/31/2019 temporary change to defined read cutoff (10 -> 30), reverted 9/03/2019
 
 def plot_read_thresh(read_counts,fig=None,ax=None):
     window = 4
@@ -264,7 +264,7 @@ def generate_single_dge_report(output_dir,genome_dir,chemistry,sample_name='',su
     read_counts = df.groupby('cell_barcode').size().sort_values(ascending=False)
     fig,ax,read_thresh = plot_read_thresh(read_counts)
 
-    digital_count_matrix,all_genes,barcodes = generate_dge_matrix(df,read_cutoff=10)        #7/31/2019 changed from 10 -> 30- reverted
+    digital_count_matrix,all_genes,barcodes = generate_dge_matrix(df,read_cutoff=15)        #7/31/2019 changed from 10 -> 30- reverted
 
     gene_df = pd.DataFrame()
     gene_df['gene_id'] = all_genes
