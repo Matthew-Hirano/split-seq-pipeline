@@ -53,7 +53,7 @@ def generate_dge_matrix(df,read_cutoff=40):                 #7/31/2019 changed f
     barcodes = cells.index.values[thresholded_cells]
     return digital_count_matrix,all_genes,barcodes
 
-def barnyard(cell_data,tickstep=10000,s=4,lim=120,ax=None,fig=None):    #9/23/2019 changed lim=None to 120 for arbitrary chart size
+def barnyard(cell_data,tickstep=10000,s=4,lim=250,ax=None,fig=None):    #9/23/2019 changed lim=None to 120 for arbitrary chart size
     species = cell_data.columns[:2]
     colors = [(0.8941176470588236, 0.10196078431372549, 0.10980392156862745),
               (0.21568627450980393, 0.49411764705882355, 0.7215686274509804),
