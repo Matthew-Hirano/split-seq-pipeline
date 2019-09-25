@@ -102,9 +102,14 @@ def barnyard(cell_data,tickstep=10000,s=4,lim=500,ax=None,fig=None):    #9/23/20
 
     if lim==None:
         lim = int((counts1+counts2).max()*1.1)
-    ax.set_xticks(plt.arange(0,100,tickstep))                #9/23/2019 replaced 'lim' with 250
-    ax.set_yticks(plt.arange(0,100,tickstep))
-    ax.set_xticklabels(plt.arange(0,250,tickstep),rotation=90)  #replaced 'lim' with 250
+    #ax.set_xticks(plt.arange(0,100,tickstep))                #9/23/2019 replaced 'lim' with 250
+    #ax.set_yticks(plt.arange(0,100,tickstep))
+    ax.set_xticks(0,250,500)
+    ax.set_yticks(0,250,500)
+    #ax.set_xticklabels(plt.arange(0,250,tickstep),rotation=90)  #replaced 'lim' with 250
+    ax.set_xticklabels(0,250,500)
+    ax.set_yticklabels(0,250,500)
+    
     ax.axis([-int(lim/30.),lim,-int(lim/30.),lim])
     ax.set_xlabel('%s UMI Counts' %species[0],fontsize=fsize)
     ax.set_ylabel('%s UMI Counts' %species[1],fontsize=fsize)
